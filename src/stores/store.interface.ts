@@ -1,10 +1,5 @@
 import { ObjectID } from 'mongodb';
-
-export enum storeApiProviders {
-  'NIBIT' = 'nibit',
-  'PRIVATE' = 'private',
-  'CERBERUS' = 'cerberus',
-}
+import { storeApiProviders } from 'src/scraper/scraper';
 
 export interface IStore {
   id?: ObjectID;

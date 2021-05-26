@@ -12,21 +12,6 @@ import { IStore, storeApiProviders } from './store.interface';
 
 @Entity()
 export class storeEntity extends BaseEntity implements IStore {
-  subChainId?: string;
-  storeId?: string;
-  bikoretNo?: string;
-  storeType?: string;
-  chainName?: string;
-  subChainname?: string;
-  storeName?: string;
-  address?: string;
-  city?: string;
-  zipCode?: string | number;
-  latitude?: number;
-  longitude?: number;
-
-  chainName_en?: string;
-  provider: storeApiProviders;
   @ObjectIdColumn()
   id: ObjectID;
 
@@ -44,4 +29,33 @@ export class storeEntity extends BaseEntity implements IStore {
   LastUpdateTime: string;
   @Column()
   LastUpdateDateTime: Date;
+  @Column()
+  subChainId?: string;
+  @Column()
+  storeId?: string;
+  @Column()
+  bikoretNo?: string;
+  @Column()
+  storeType?: string;
+  @Column()
+  chainName?: string;
+  @Column()
+  subChainname?: string;
+  @Column()
+  storeName?: string;
+  @Column()
+  address?: string;
+  @Column()
+  city?: string;
+  @Column()
+  zipCode?: string | number;
+  @Column()
+  latitude?: number;
+  @Column()
+  longitude?: number;
+
+  @Column()
+  chainName_en?: string;
+  @Column()
+  provider: storeApiProviders;
 }
