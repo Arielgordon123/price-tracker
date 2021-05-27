@@ -10,7 +10,7 @@ export class ScraperService {
         'username=osherad&password=&Submit=Sign+in',
       )
       .subscribe(res => {
-        console.log('res :>> ', res);
+        console.log('res :>> ', res.headers['set-cookie']);
       });
 
     // createScraper({
