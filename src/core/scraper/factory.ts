@@ -1,2 +1,14 @@
+import { CompanyTypes } from '../definitions';
+import { Cerberus } from './cerberus';
+import { ScaperOptions } from './scraper';
 
-import 
+export default function createScraper(options: ScaperOptions) {
+  console.log('options.scraperName :>> ', options.scraperName);
+  switch (options.scraperName) {
+    case CompanyTypes.osherAd:
+      return new Cerberus(options);
+
+    default:
+      throw new Error(`unknown company id ${options.scraperName}`);
+  }
+}

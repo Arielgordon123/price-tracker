@@ -1,5 +1,5 @@
 import { ObjectID } from 'mongodb';
-import { storeApiProviders } from 'src/scraper/scraper';
+import { storeApiProviders } from 'src/core/scraper/scraper';
 
 export interface IStore {
   id?: ObjectID;

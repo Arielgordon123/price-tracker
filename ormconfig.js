@@ -1,6 +1,5 @@
 const join = require('path').join;
 
-console.log('join(__dirname, ', join(__dirname, '**', '*.entity.{ts,js}'));
 module.exports = {
   type: 'mongodb',
   url: process.env.DATABASE_URL,

@@ -8,7 +8,8 @@ import {
   ObjectIdColumn,
 } from 'typeorm';
 import { ObjectID } from 'mongodb';
-import { IStore, storeApiProviders } from './store.interface';
+import { IStore } from './store.interface';
+import { storeApiProviders } from 'src/core/scraper/scraper';
 
 @Entity()
 export class storeEntity extends BaseEntity implements IStore {

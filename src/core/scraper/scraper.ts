@@ -6,7 +6,7 @@ export enum storeApiProviders {
 
 export interface ScaperOptions {
   scraperName: string;
-  scraperType: storeApiProviders;
+  // scraperType: storeApiProviders;
 }
 export enum ScraperErrorTypes {
   InvalidPassword = 'INVALID_PASSWORD',
