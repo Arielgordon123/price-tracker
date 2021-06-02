@@ -19,11 +19,12 @@ export enum ScraperErrorTypes {
 
 export interface ScaperLoginResult {
   success: boolean;
+  cookie?: string | Array<string>;
   errorType?: ScraperErrorTypes;
   errorMessage?: string; // only on success=false
 }
 export class Scraper {
-  constructor(public options: ScaperOptions) {}
+  constructor(public options: ScaperOptions) { }
 
   async login(
     _credentials: Record<string, string>,

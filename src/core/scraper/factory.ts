@@ -3,7 +3,7 @@ import { Cerberus } from './cerberus';
 import { ScaperOptions } from './scraper';
 
 export default function createScraper(options: ScaperOptions) {
-  console.log('options.scraperName :>> ', options.scraperName);
+
   switch (options.scraperName) {
     case CompanyTypes.osherAd:
       return new Cerberus(options);
