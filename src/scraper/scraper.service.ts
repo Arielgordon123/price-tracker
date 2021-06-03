@@ -18,7 +18,7 @@ export class ScraperService {
     }).getFiles({
       data: 'username=osherad&password=&Submit=Sign+in',
     }).then(files => {
-      console.log('get files: ',files)
+      console.log('get files: ',files.data.aaData)
     })
 
   }
