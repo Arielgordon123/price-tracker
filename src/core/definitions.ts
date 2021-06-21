@@ -21,5 +21,6 @@ export const SCRAPERS = {
   [CompanyTypes.osherAd]: {
     name: 'Osher Ad',
     loginFields: { userName: 'osherad', password: '' },
+    type: 'cerberus',
   },
 };
