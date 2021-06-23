@@ -1,14 +1,13 @@
 import { CompanyTypes } from '../definitions';
 import { Cerberus } from './cerberus';
-import { ScaperOptions } from './scraper';
+import { ScaperOptions, storeApiProviders } from './scraper';
 
 export default function createScraper(options: ScaperOptions) {
-
-  switch (options.scraperName) {
-    case CompanyTypes.osherAd:
+  switch (options.type) {
+    case storeApiProviders.CERBERUS:
       return new Cerberus(options);
 
     default:
-      throw new Error(`unknown company id ${options.scraperName}`);
+      throw new Error(`unknown company id ${options.name}`);
   }
 }

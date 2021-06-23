@@ -5,8 +5,10 @@ export enum storeApiProviders {
 }
 
 export interface ScaperOptions {
-  scraperName: string;
-  // scraperType: storeApiProviders;
+  name: string;
+  type: string;
+  credentials: Record<string, string>;
+  cookie?: string;
 }
 export enum ScraperErrorTypes {
   InvalidPassword = 'INVALID_PASSWORD',
@@ -24,11 +26,9 @@ export interface ScaperLoginResult {
   errorMessage?: string; // only on success=false
 }
 export class Scraper {
-  constructor(public options: ScaperOptions) { }
+  constructor(public options: ScaperOptions) {}
 
-  async login(
-    _credentials: Record<string, string>,
-  ): Promise<ScaperLoginResult> {
-    throw new Error(`login() is not created in ${this.options.scraperName}`);
+  login(): Promise<void> {
+    throw new Error(`login() is not created in ${this.options.name}`);
   }
 }
