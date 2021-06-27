@@ -5,9 +5,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { StoresModule } from './stores/stores.module';
 import { Connection } from 'typeorm';
 import { ScraperModule } from './scraper/scraper.module';
+import { StoreFilesModule } from './store-files/store-files.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(), StoresModule, ScraperModule],
+  imports: [TypeOrmModule.forRoot(), StoresModule, ScraperModule, StoreFilesModule],
   controllers: [AppController],
   providers: [AppService],
 })

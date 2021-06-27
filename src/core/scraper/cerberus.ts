@@ -1,7 +1,9 @@
 import { AxiosResponse } from 'axios';
+import { createWriteStream } from 'fs';
+import { promisify } from 'util';
+import * as stream from 'stream';
 import { ScaperLoginResult, ScaperOptions, Scraper } from './scraper';
 const axios = require('axios');
-
 const BASE_URL = 'https://url.publishedprices.co.il';
 const instance = axios.create({
   baseURL: BASE_URL,
@@ -75,20 +77,27 @@ export class Cerberus extends Scraper {
         });
     });
   }
-
-  getFile(fileName: string) {
-    return instance.get(`/file/d/${fileName}`, {
-      headers: {
-        Accept: 'application/xml',
-        'Content-Type': 'text/xml',
-        'Accept-Language': `he-IL,he;q=0.9,en-US;q=0.8,en;q=0.7`,
-        Cookie: this.options.cookie,
-      },
-      params: {
-        m: 0,
-      },
-      responseType: 'document',
-    });
+  finished = promisify(stream.finished);
+  getFile(fileName: string, outputLocationPath: string) {
+    const writer = createWriteStream(outputLocationPath);
+    return instance
+      .get(`/file/d/${fileName}`, {
+        headers: {
+          Accept: 'application/xml',
+          'Content-Type': 'text/xml',
+          'Accept-Language': `he-IL,he;q=0.9,en-US;q=0.8,en;q=0.7`,
+          Cookie: this.options.cookie,
+        },
+        params: {
+          m: 0,
+        },
+        responseType: 'stream',
+        decompress: false,
+      })
+      .then(async response => {
+        response.data.pipe(writer);
+        return this.finished(writer); //this is a Promise
+      });
   }
 
   getList(): cerberusFileResponse[] {

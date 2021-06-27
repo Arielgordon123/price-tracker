@@ -11,7 +11,7 @@ import { ObjectID } from 'mongodb';
 import { IStore } from './store.interface';
 import { storeApiProviders } from 'src/core/scraper/scraper';
 
-@Entity()
+@Entity('store')
 export class storeEntity extends BaseEntity implements IStore {
   @ObjectIdColumn()
   id: ObjectID;
