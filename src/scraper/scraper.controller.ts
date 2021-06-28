@@ -1,11 +1,15 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, ParseIntPipe, Query } from '@nestjs/common';
 import { ScraperService } from './scraper.service';
 
 @Controller('scraper')
 export class ScraperController {
   constructor(private scraperService: ScraperService) {}
+  
   @Get()
-  login() {
-    return this.scraperService.scrape();
+  login(@Query('storeName') storeName:string[], @Query('numOfFiles') numOfFiles: string) {
+    
+
+    
+    return this.scraperService.scrape(storeName, numOfFiles);
   }
 }

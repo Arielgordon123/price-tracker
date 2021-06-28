@@ -2,6 +2,7 @@ import { AxiosResponse } from 'axios';
 import { createWriteStream } from 'fs';
 import { promisify } from 'util';
 import * as stream from 'stream';
+const { ungzip } = require('node-gzip');
 import { ScaperLoginResult, ScaperOptions, Scraper } from './scraper';
 const axios = require('axios');
 const BASE_URL = 'https://url.publishedprices.co.il';
@@ -91,10 +92,13 @@ export class Cerberus extends Scraper {
         params: {
           m: 0,
         },
-        responseType: 'stream',
+        responseType: 'buffer',
         decompress: false,
       })
       .then(async response => {
+        ungzip(response.data).then(text => {
+          debugger
+        })
         response.data.pipe(writer);
         return this.finished(writer); //this is a Promise
       });

@@ -27,7 +27,7 @@ export class StoreService {
     );
   }
 
-  create(name: string): Observable<storeEntity> {
+  createStore(name: string): Observable<storeEntity> {
     return from(
       this.storesRepository.save({
         ChainId: '22222',
