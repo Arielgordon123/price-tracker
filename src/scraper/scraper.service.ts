@@ -37,54 +37,55 @@ export class ScraperService {
           if (!fs.existsSync(`./../test/${scraper.name}`)) {
             fs.mkdirSync(`./../test/${scraper.name}`);
           }
-          s.fetchFiles().then(() => {
-            let list = s.getList();
-            let _numOfFiles:number;
-            if(numOfFiles == '*')
-              _numOfFiles = list.length;
-            else{
-              _numOfFiles = parseInt(numOfFiles)
-            }
-            for (let i=0; i<list.length && fileDownloaded<_numOfFiles; i++  ) {
-              let file = list[i];
-              fileDownloaded++;
-              this.storeFileService
-                .checkIfFileProcessed(scraper.name, file.name)
-                .subscribe(status => {
+          s.fetchFiles()
+          // .then(() => {
+          //   let list = s.getList();
+          //   let _numOfFiles:number;
+          //   if(numOfFiles == '*')
+          //     _numOfFiles = list.length;
+          //   else{
+          //     _numOfFiles = parseInt(numOfFiles)
+          //   }
+          //   for (let i=0; i<list.length && fileDownloaded<_numOfFiles; i++  ) {
+          //     let file = list[i];
+          //     fileDownloaded++;
+          //     this.storeFileService
+          //       .checkIfFileProcessed(scraper.name, file.name)
+          //       .subscribe(status => {
                   
-                  if(!status.exsists){
+          //         if(!status.exsists){
                    
-                    console.log('status :>> ', status);
-                    console.log('file.name :>> ', file.name);
-                    this.storeFileService.saveFileProcess({
-                        storeName: scraper.name,
-                        fileName: file.name,
-                        processed: false,
-                      });
-                      s.getFile(file.name, `./../test/${scraper.name}/${file.name}`).then(
-                          done => {
-                            console.log('file :>> ', file.name);
+          //           console.log('status :>> ', status);
+          //           console.log('file.name :>> ', file.name);
+          //           this.storeFileService.saveFileProcess({
+          //               storeName: scraper.name,
+          //               fileName: file.name,
+          //               processed: false,
+          //             });
+          //             // s.getFile(file.name, `./../test/${scraper.name}/${file.name}`).then(
+          //             //     done => {
+          //             //       console.log('file :>> ', file.name);
                           
-                          },
-                        );
+          //             //     },
+          //             //   );
     
-                  }
-                  else if  (status.exsists && !status.processed) {
-                    console.log('status :>> ', status);
-                  }
-                });
+          //         }
+          //         else if  (status.exsists && !status.processed) {
+          //           console.log('status :>> ', status);
+          //         }
+          //       });
     
     
-              // handle store list
-              // if (file.name.match(/^.*\.xml$/)) {
-              // s.getFile(file.name, `./../test/${scraper.name}/${file.name}`).then(
-              //   d => {
-              //     console.log('f :>> ', d);
-              //   },
-              // );
-              // }
-            }
-          });
+          //     // handle store list
+          //     // if (file.name.match(/^.*\.xml$/)) {
+          //     // s.getFile(file.name, `./../test/${scraper.name}/${file.name}`).then(
+          //     //   d => {
+          //     //     console.log('f :>> ', d);
+          //     //   },
+          //     // );
+          //     // }
+          //   }
+          // });
     })
 
     // for (let scraper of SCRAPERS) {
